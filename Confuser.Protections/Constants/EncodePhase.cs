@@ -283,7 +283,8 @@ namespace Confuser.Protections.Constants {
 							if (instrs[i - 2].OpCode != OpCodes.Dup) continue;
 							if (instrs[i - 3].OpCode != OpCodes.Newarr) continue;
 							if (instrs[i - 4].OpCode != OpCodes.Ldc_I4) continue;
-
+						        if(dataField.DeclaringType!=null)
+ +								 dataField.DeclaringType.Fields.Remove(dataField);
 							var dataField = instrs[i - 1].Operand as FieldDef;
 							if (dataField == null)
 								continue;
