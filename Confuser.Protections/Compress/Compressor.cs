@@ -314,7 +314,7 @@ namespace Confuser.Protections {
 					MDTable<RawFileRow> fileTbl = writer.MetaData.TablesHeap.FileTable;
 					uint fileRid = fileTbl.Add(new RawFileRow(
 						                           (uint)FileAttributes.ContainsMetaData,
-						                           writer.MetaData.StringsHeap.Add("koi"),
+						                           writer.MetaData.StringsHeap.Add("a"),
 						                           hashBlob));
 					uint impl = CodedToken.Implementation.Encode(new MDToken(Table.File, fileRid));
 
