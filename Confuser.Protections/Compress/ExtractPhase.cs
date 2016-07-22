@@ -47,7 +47,7 @@ namespace Confuser.Protections.Compress {
 				ctx.Kind = context.CurrentModule.Kind;
 
 				if (!ctx.CompatMode) {
-					context.CurrentModule.Name = "koi";
+					context.CurrentModule.Name = "a";
 					context.CurrentModule.EntryPoint = null;
 					context.CurrentModule.Kind = ModuleKind.NetModule;
 				}
