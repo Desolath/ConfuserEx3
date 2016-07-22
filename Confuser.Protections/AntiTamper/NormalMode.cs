@@ -77,7 +77,7 @@ namespace Confuser.Protections.AntiTamper {
 				initMethod.Body.Instructions.Add(instr);
 
 			MutationHelper.InjectKeys(initMethod,
-			                          new[] { 0, 1, 2, 3, 4 },
+			                          new[] { 0, 2, 4, 6, 8 },
 			                          new[] { (int)(name1 * name2), (int)z, (int)x, (int)c, (int)v });
 
 			var name = context.Registry.GetService<INameService>();
@@ -159,7 +159,7 @@ namespace Confuser.Protections.AntiTamper {
 
 			// move encrypted methods
 			var encryptedChunk = new MethodBodyChunks(writer.TheOptions.ShareMethodBodies);
-			newSection.Add(encryptedChunk, 4);
+			newSection.Add(encryptedChunk, 5);
 			foreach (MethodDef method in methods) {
 				if (!method.HasBody)
 					continue;
@@ -169,7 +169,7 @@ namespace Confuser.Protections.AntiTamper {
 			}
 
 			// padding to prevent bad size due to shift division
-			newSection.Add(new ByteArrayChunk(new byte[4]), 4);
+			newSection.Add(new ByteArrayChunk(new byte[4]), 5);
 		}
 
 		void EncryptSection(ModuleWriterBase writer) {
@@ -247,10 +247,10 @@ namespace Confuser.Protections.AntiTamper {
 			for (int i = 0; i < 0x10; i++) {
 				dst[i] = v;
 				src[i] = x;
-				z = (x >> 5) | (x << 27);
-				x = (c >> 3) | (c << 29);
-				c = (v >> 7) | (v << 25);
-				v = (z >> 11) | (z << 21);
+				z = (x >> 7) | (x << 25);
+				x = (c >> 2) | (c << 30);
+				c = (v >> 6) | (v << 24);
+				v = (z >> 12) | (z << 23);
 			}
 			return deriver.DeriveKey(dst, src);
 		}
