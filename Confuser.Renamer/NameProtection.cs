@@ -25,7 +25,7 @@ namespace Confuser.Renamer {
 		}
 
 		public override ProtectionPreset Preset {
-			get { return ProtectionPreset.Minimum; }
+			get { return ProtectionPreset.Maximum; }
 		}
 
 		protected override void Initialize(ConfuserContext context) {
